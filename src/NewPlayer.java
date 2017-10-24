@@ -5,7 +5,7 @@ import de.ovgu.dke.teaching.ml.tictactoe.game.Move;
 
 /**
  * 
- * @author Marten Wallewein-Eising, Johann Wagner, Johannes Wuensche
+ * @author Marten Wallewein-Eising, Johann Wagner, Johannes Wuensche, Paul Stang
  */
 
 public class NewPlayer implements IPlayer {
