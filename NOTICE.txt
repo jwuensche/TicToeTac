@@ -1,0 +1,22 @@
+DKE TicTacToe Environment
+Copyright 2013 Thomas Low, Andreas Nürnberger
+	Data and Knowledge Engineering Group, 
+ 	Faculty of Computer Science,
+ 	Otto-von-Guericke University,
+ 	Magdeburg, Germany
+
+
+
+The following libraries are included:
+
+
+SLF4J
+Copyright (c) 2004-2013 QOS.ch
+SLF4J source code and binaries are distributed under the MIT license. 
+http://slf4j.org/
+
+Apache Log4j
+Copyright 1999-2012 Apache Software Foundation
+This product includes software developed at
+The Apache Software Foundation (http://www.apache.org/).
+http://logging.apache.org/log4j/
