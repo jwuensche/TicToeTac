@@ -131,12 +131,92 @@ public class NewPlayer implements IPlayer {
 	 * @return int[] of x0, ..., xi
 	 */
 	private int[] getParameters(IBoard board){
-		// stuff
-		//return
+		int[] index1 = {0,0,0};
+		int[] index2 = {0,0,0};
+		int[] param = {0,0,0,board.getSize(), board.getSize()};
+		//Notation for already seen players on a row
+		IPlayer[] rows =new IPlayer[board.getSize()]; 
+		int layers = 1;
+		if(board.getDimensions() > 2)
+			layers = board.getSize();
+		
+		//Begin search structure
+		while (layers > 0){
+		layers--;
+		index1[2] = index2[2] = layers;
+		for(int column = 0, column < board.getSize(), column++){
+			index1[0] = column;
+			//Notation for already seen Player in a column
+			IPlayer columns = null;
+			int marks = board.getSize();
+
+			for(int row = 0, row < board.getSize(), row++){
+				index1[1] = row;
+				//Check for occupation
+				if(board.getFieldValue(index1) != null && columns == null)
+					columns = board.getFieldValue(index1);
+				//Check for occupation conflict
+				else if(board.getFieldValue(index1) != null && columns != board.getFieldValue(index1))
+					break;
+				//Check for occupation continuation
+				else if(board.getFieldValue(index1) != null && columns == board.getFieldValue(index1))
+					marks--;
+				//Check for end
+				if(row = board.getSize() - 1){
+					if(this != columns){
+						param[2]++;
+						if(marks < param[4])
+							param[4] = marks;
+					}
+					else{
+						param[1]++;
+						if(marks < param[3])
+							param[3] = marks;
+					}
+				}
+			}
+			// ------ end column search
+		}
+
+		for(int row = 0, row < board.getSize(), row++){
+			index2[1] = column;
+			//Notation for already seen Player in a column
+			IPlayer columns = null;
+			int marks = board.getSize();
+
+			for(int row = 0, row < board.getSize(), row++){
+				index2[0] = row;
+				//Check for occupation
+				if(board.getFieldValue(index2) != null && columns == null)
+					columns = board.getFieldValue(index2);
+				//Check for occupation conflict
+				else if(board.getFieldValue(index2) != null && columns != board.getFieldValue(index2))
+					break;
+				//Check for occupation continuation
+				else if(board.getFieldValue(index2) != null && columns == board.getFieldValue(index2))
+					marks--;
+				//Check for end
+				if(row = board.getSize() - 1){
+					if(this != columns){
+						param[2]++;
+						if(marks < param[4])
+							param[4] = marks;
+					}
+					else{
+						param[1]++;
+						if(marks < param[3])
+							param[3] = marks;
+					}
+				}
+			}
+			// ------ end row search
+		}
+	}
 		return null;
 	}
 
 	public void onMatchEnds(IBoard board) {
+
 		return;
 	}
 
