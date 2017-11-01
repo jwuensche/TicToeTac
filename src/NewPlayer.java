@@ -19,7 +19,7 @@ public class NewPlayer implements IPlayer {
 	 * Backup of implementation in https://github.com/jwuensche/TicToeTac/commit/a9d015965f726a3761f8bcf3622fa80b2153da36
 	 */
 	float[] weights2 = {1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 }; // for the 4x,3x,2x,1x and 4o,3o,2o,1o
-	float[] weights = {0, 10, -10, -10, 10 };
+	float[] weights = {0,10,-10,20,-20};//{0, 10, -10, -10, 10 };//{0.0f, 20.906f, -0.8389592f, -7.8188f, 12.1812f};//{0.0f, 13.5f, -7.0599995f, -9.3f, 10.7f};//{0, 10, -10, -10, 10 };
 	
 	public NewPlayer(){
 		
@@ -35,7 +35,7 @@ public class NewPlayer implements IPlayer {
 	{	
 		// create a clone of the board that can be modified
 		int[] currentParams = new int[board.getDimensions()];
-		IMove bestMove = new Move(this, new int[] {1, 0,0});
+		IMove bestMove = null;
 		float bestScore = Integer.MIN_VALUE, currentScore = 0;
 		
 		do
