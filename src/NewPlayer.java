@@ -230,12 +230,12 @@ public class NewPlayer implements IPlayer {
 					marks--;
 				//Check for end
 				if(row == board.getSize() - 1){
-					if(this != columns){
+					if(this != columns && columns != null){
 						param[2]++;
 						if(marks < param[4])
 							param[4] = marks;
 					}
-					else{
+					else if(this == columns){
 						param[1]++;
 						if(marks < param[3])
 							param[3] = marks;
@@ -264,12 +264,12 @@ public class NewPlayer implements IPlayer {
 					marks--;
 				//Check for end
 				if(row == board.getSize() - 1){
-					if(this != columns){
+					if(this != columns && columns != null){
 						param[2]++;
 						if(marks < param[4])
 							param[4] = marks;
 					}
-					else{
+					else if(this == columns){
 						param[1]++;
 						if(marks < param[3])
 							param[3] = marks;
@@ -278,7 +278,50 @@ public class NewPlayer implements IPlayer {
 			}
 			// ------ end row search
 		}
+		// ------ begin vertical search
 	}
+
+	index2[0]=index2[1]=index2[2]=0;
+
+	if(board.getDimensions() == 3){
+		for(int row = 0; row < board.getSize(); row++){
+				index2[1] = row;
+				//Notation for already seen Player in a column
+				IPlayer columns = null;
+				int marks = board.getSize();
+
+				for(int column = 0; column < board.getSize(); column++){
+					index2[0] = column;
+					for(int layer = 0; layer < board.getSize(); layer++){
+						index2[2] = layer;
+						//Check for occupation
+						if(board.getFieldValue(index2) != null && columns == null)
+							columns = board.getFieldValue(index2);
+						//Check for occupation conflict
+						else if(board.getFieldValue(index2) != null && columns != board.getFieldValue(index2))
+							break;
+						//Check for occupation continuation
+						else if(board.getFieldValue(index2) != null && columns == board.getFieldValue(index2))
+							marks--;
+						//Check for end
+						if(layer == board.getSize() - 1){
+							if(this != columns && columns != null){
+								param[2]++;
+								if(marks < param[4])
+									param[4] = marks;
+							}
+							else if(this == columns){
+								param[1]++;
+								if(marks < param[3])
+									param[3] = marks;
+							}
+						}
+					}
+				}
+				// ------ end row search
+			}
+		}
+
 		return param;
 	}
 
