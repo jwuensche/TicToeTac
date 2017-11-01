@@ -19,7 +19,7 @@ public class NewPlayer implements IPlayer {
 	 * Backup of implementation in https://github.com/jwuensche/TicToeTac/commit/a9d015965f726a3761f8bcf3622fa80b2153da36
 	 */
 	float[] weights2 = {1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 }; // for the 4x,3x,2x,1x and 4o,3o,2o,1o
-	float[] weights = {0,10,-10,20,-20};//{0, 10, -10, -10, 10 };//{0.0f, 20.906f, -0.8389592f, -7.8188f, 12.1812f};//{0.0f, 13.5f, -7.0599995f, -9.3f, 10.7f};//{0, 10, -10, -10, 10 };
+	float[] weights = {0, 10, -10, -10, 10 };
 	
 	public NewPlayer(){
 		
@@ -35,7 +35,7 @@ public class NewPlayer implements IPlayer {
 	{	
 		// create a clone of the board that can be modified
 		int[] currentParams = new int[board.getDimensions()];
-		IMove bestMove = null;
+		IMove bestMove = new Move(this, new int[] {1, 0,0});
 		float bestScore = Integer.MIN_VALUE, currentScore = 0;
 		
 		do
@@ -230,12 +230,12 @@ public class NewPlayer implements IPlayer {
 					marks--;
 				//Check for end
 				if(row == board.getSize() - 1){
-					if(this != columns){
+					if(this != columns && columns != null){
 						param[2]++;
 						if(marks < param[4])
 							param[4] = marks;
 					}
-					else{
+					else if(this == columns){
 						param[1]++;
 						if(marks < param[3])
 							param[3] = marks;
@@ -264,12 +264,12 @@ public class NewPlayer implements IPlayer {
 					marks--;
 				//Check for end
 				if(row == board.getSize() - 1){
-					if(this != columns){
+					if(this != columns && columns != null){
 						param[2]++;
 						if(marks < param[4])
 							param[4] = marks;
 					}
-					else{
+					else if(this == columns){
 						param[1]++;
 						if(marks < param[3])
 							param[3] = marks;
@@ -278,7 +278,50 @@ public class NewPlayer implements IPlayer {
 			}
 			// ------ end row search
 		}
+		// ------ begin vertical search
 	}
+
+	index2[0]=index2[1]=index2[2]=0;
+
+	if(board.getDimensions() == 3){
+		for(int row = 0; row < board.getSize(); row++){
+				index2[1] = row;
+				//Notation for already seen Player in a column
+				IPlayer columns = null;
+				int marks = board.getSize();
+
+				for(int column = 0; column < board.getSize(); column++){
+					index2[0] = column;
+					for(int layer = 0; layer < board.getSize(); layer++){
+						index2[2] = layer;
+						//Check for occupation
+						if(board.getFieldValue(index2) != null && columns == null)
+							columns = board.getFieldValue(index2);
+						//Check for occupation conflict
+						else if(board.getFieldValue(index2) != null && columns != board.getFieldValue(index2))
+							break;
+						//Check for occupation continuation
+						else if(board.getFieldValue(index2) != null && columns == board.getFieldValue(index2))
+							marks--;
+						//Check for end
+						if(layer == board.getSize() - 1){
+							if(this != columns && columns != null){
+								param[2]++;
+								if(marks < param[4])
+									param[4] = marks;
+							}
+							else if(this == columns){
+								param[1]++;
+								if(marks < param[3])
+									param[3] = marks;
+							}
+						}
+					}
+				}
+				// ------ end row search
+			}
+		}
+
 		return param;
 	}
 
