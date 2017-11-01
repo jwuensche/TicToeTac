@@ -1,7 +1,11 @@
+import java.util.Arrays;
+
 import de.ovgu.dke.teaching.ml.tictactoe.api.IBoard;
+import de.ovgu.dke.teaching.ml.tictactoe.api.IMove;
 import de.ovgu.dke.teaching.ml.tictactoe.api.IPlayer;
 import de.ovgu.dke.teaching.ml.tictactoe.api.IllegalMoveException;
 import de.ovgu.dke.teaching.ml.tictactoe.game.Move;
+import de.ovgu.dke.teaching.ml.tictactoe.util.Indexing;
 
 /**
  * 
@@ -11,19 +15,64 @@ import de.ovgu.dke.teaching.ml.tictactoe.game.Move;
 public class NewPlayer implements IPlayer {
 	//float w0, w1, w2, w3, w4;
 	float learningRate = 0.001f;
-	float[] weights = {1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 }; // for the 4x,3x,2x,1x and 4o,3o,2o,1o
-	
+	/**
+	 * Backup of implementation in https://github.com/jwuensche/TicToeTac/commit/a9d015965f726a3761f8bcf3622fa80b2153da36
+	 */
+	float[] weights2 = {1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 }; // for the 4x,3x,2x,1x and 4o,3o,2o,1o
+	float[] weights = {0, 10, -10, -10, 10 };
 	
 	public NewPlayer(){
-		//w0 = w1 = w2 = w3 = w4= 1.0f;
+		
 	}
 	
 	public String getName() {
 		// TODO Auto-generated method stub
-		return "the name of your player";
+		return "TicToeTac";
 	}
 
-	public int[] makeMove(IBoard board) {
+
+	public int[] makeMove(IBoard board)
+	{	
+		// create a clone of the board that can be modified
+		int[] currentParams = new int[board.getDimensions()];
+		IMove bestMove = new Move(this, new int[] {1, 0,0});
+		float bestScore = Integer.MIN_VALUE, currentScore = 0;
+		
+		do
+		{
+			IBoard copy = board.clone();
+			if(board.getFieldValue(currentParams) != null)
+				continue;
+			
+			// do a move using the cloned board
+			try {
+				
+				Move currentMove = new Move(this, currentParams.clone());
+				copy.makeMove(currentMove);
+				
+				currentScore = classifyBoard(copy);
+				if(currentScore > bestScore)
+				{
+					bestMove = currentMove;
+					bestScore = currentScore;
+				}
+				
+			} catch (IllegalMoveException e) {
+				// move was not allowed
+			}
+			
+		}
+		while(Indexing.incrementIndices(currentParams, board.getSize()));
+		
+		return bestMove.getPosition();
+	}
+	
+	/**
+	 * Backup of implementation in https://github.com/jwuensche/TicToeTac/commit/a9d015965f726a3761f8bcf3622fa80b2153da36
+	 * @param board
+	 * @return
+	 */
+	public int[] makeMove2(IBoard board) {
 		// TODO Auto-generated method stub
 		int [] makeMove = new int[3];
 		double boardScore = Double.MIN_VALUE;
@@ -84,28 +133,46 @@ public class NewPlayer implements IPlayer {
 		return makeMove;
 	}
 	
-	private void LMS(IBoard boardPrev, IBoard boardAft){
-		int[] params = this.getParameters(boardAft);
+	/**
+	 *  Least mean square error algorithm learning the weights based on the given error
+	 * @param boardPrev Last board state
+	 * @param boardAft Current board state
+	 */
+	private void LMS(IBoard boardPrev, IBoard boardAft)
+	{
 		float moveValue = this.classifyMove(boardPrev, boardAft);
-		
-		for(int i = 0; i < params.length; ++i)
-		{
-			this.weights[i] = this.weights[i] + this.learningRate * params[i]* moveValue;
-		}
-		
-		/*
-		this.w0 = this.w0 + this.learningRate * 1 * moveValue;
-		this.w1 = this.w1 + this.learningRate * param[0]* moveValue;
-		this.w2 = this.w2 + this.learningRate * param[1]* moveValue;
-		this.w3 = this.w3 + this.learningRate * param[2]* moveValue;
-		this.w4 = this.w4 + this.learningRate * param[3]* moveValue;
-		*/
+		LMS(boardAft, moveValue);
 	}
 	
+	/**
+	 * Least mean square error algorithm learning the weights based on the given error
+	 * @param board Current Board state
+	 * @param error Training error, @see documentation
+	 */
+	private void LMS(IBoard board, float error){
+		int[] params = this.getParameters(board);
+
+		for(int i = 0; i < params.length; ++i)
+		{
+			this.weights[i] = this.weights[i] + this.learningRate * params[i] * error;
+		}
+	}
+	
+	/**
+	 * Calculates the difference of the board scores of the last and current board
+	 * @param boardPrev Last board state
+	 * @param boardAft Current board state@param boardPrev
+	 * @return Score difference
+	 */
 	private float classifyMove(IBoard boardPrev, IBoard boardAft){
 		return this.classifyBoard(boardAft) - this.classifyBoard(boardPrev);
 	}
 	
+	/**
+	 * Calculates the Board score based on the current weights
+	 * @param board Current Board state
+	 * @return Board score
+	 */
 	private float classifyBoard(IBoard board){
 		
 		int [] params = this.getParameters(board);
@@ -144,13 +211,13 @@ public class NewPlayer implements IPlayer {
 		while (layers > 0){
 		layers--;
 		index1[2] = index2[2] = layers;
-		for(int column = 0, column < board.getSize(), column++){
+		for(int column = 0; column < board.getSize(); column++){
 			index1[0] = column;
 			//Notation for already seen Player in a column
 			IPlayer columns = null;
 			int marks = board.getSize();
 
-			for(int row = 0, row < board.getSize(), row++){
+			for(int row = 0; row < board.getSize(); row++){
 				index1[1] = row;
 				//Check for occupation
 				if(board.getFieldValue(index1) != null && columns == null)
@@ -162,7 +229,7 @@ public class NewPlayer implements IPlayer {
 				else if(board.getFieldValue(index1) != null && columns == board.getFieldValue(index1))
 					marks--;
 				//Check for end
-				if(row = board.getSize() - 1){
+				if(row == board.getSize() - 1){
 					if(this != columns){
 						param[2]++;
 						if(marks < param[4])
@@ -178,14 +245,14 @@ public class NewPlayer implements IPlayer {
 			// ------ end column search
 		}
 
-		for(int row = 0, row < board.getSize(), row++){
-			index2[1] = column;
+		for(int row = 0; row < board.getSize(); row++){
+			index2[1] = row;
 			//Notation for already seen Player in a column
 			IPlayer columns = null;
 			int marks = board.getSize();
 
-			for(int row = 0, row < board.getSize(), row++){
-				index2[0] = row;
+			for(int column = 0; column < board.getSize(); column++){
+				index2[0] = column;
 				//Check for occupation
 				if(board.getFieldValue(index2) != null && columns == null)
 					columns = board.getFieldValue(index2);
@@ -196,7 +263,7 @@ public class NewPlayer implements IPlayer {
 				else if(board.getFieldValue(index2) != null && columns == board.getFieldValue(index2))
 					marks--;
 				//Check for end
-				if(row = board.getSize() - 1){
+				if(row == board.getSize() - 1){
 					if(this != columns){
 						param[2]++;
 						if(marks < param[4])
@@ -212,11 +279,25 @@ public class NewPlayer implements IPlayer {
 			// ------ end row search
 		}
 	}
-		return null;
+		return param;
 	}
 
+	/**
+	 * Learns the weights based on the winner of the match
+	 */
 	public void onMatchEnds(IBoard board) {
-
+		// calculate error
+		float currentBoardState = 0;
+		if(board.getWinner() == null)
+			currentBoardState = 50;
+		else if(board.getWinner() == this)
+			currentBoardState = 100;
+		else
+			currentBoardState = -100;
+		
+		float error = Math.abs(classifyBoard(board) - currentBoardState);
+		LMS(board, error);
+		
 		return;
 	}
 
