@@ -15,11 +15,13 @@ import de.ovgu.dke.teaching.ml.tictactoe.util.Indexing;
 public class NewPlayer implements IPlayer {
 	//float w0, w1, w2, w3, w4;
 	float learningRate = 0.001f;
+	int moves =0;
+	int matches =0;
+	int lost=0;
 	/**
 	 * Backup of implementation in https://github.com/jwuensche/TicToeTac/commit/a9d015965f726a3761f8bcf3622fa80b2153da36
 	 */
-	float[] weights2 = {1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 }; // for the 4x,3x,2x,1x and 4o,3o,2o,1o
-	float[] weights = {0, 10, -10, -10, 10 };
+	float[] weights = {0, 1, 1, 1, 1 };
 	
 	public NewPlayer(){
 		
@@ -34,6 +36,7 @@ public class NewPlayer implements IPlayer {
 	public int[] makeMove(IBoard board)
 	{	
 		// create a clone of the board that can be modified
+		moves++;
 		int[] currentParams = new int[board.getDimensions()];
 		IMove bestMove = new Move(this, new int[] {1, 0,0});
 		float bestScore = Integer.MIN_VALUE, currentScore = 0;
@@ -56,7 +59,7 @@ public class NewPlayer implements IPlayer {
 					bestMove = currentMove;
 					bestScore = currentScore;
 				}
-				
+					
 			} catch (IllegalMoveException e) {
 				// move was not allowed
 			}
@@ -65,72 +68,6 @@ public class NewPlayer implements IPlayer {
 		while(Indexing.incrementIndices(currentParams, board.getSize()));
 		
 		return bestMove.getPosition();
-	}
-	
-	/**
-	 * Backup of implementation in https://github.com/jwuensche/TicToeTac/commit/a9d015965f726a3761f8bcf3622fa80b2153da36
-	 * @param board
-	 * @return
-	 */
-	public int[] makeMove2(IBoard board) {
-		// TODO Auto-generated method stub
-		int [] makeMove = new int[3];
-		double boardScore = Double.MIN_VALUE;
-		// create a clone of the board that can be modified
-		IBoard copy = board.clone();
-		IBoard tmp = board.clone();
-		//create an additional board and if the next move == winner then make this move
-		// if not go through every possible move and choose the one with the highest score
-		for(int x = 0;x<5;x++)
-		{
-			for(int y = 0;y<5;y++)
-			{
-				for(int z = 0;z<5;z++)
-				{
-					makeMove= new int[]{x,y,z};
-					try 
-					{
-						tmp.makeMove(new Move(this, makeMove));
-						if(tmp.isFinalState())
-							if(tmp.getWinner()==this) 
-								return makeMove;
-						
-					}
-					catch (IllegalMoveException e) 
-					{
-						// move was not allowed
-					}
-					if(copy.getFieldValue(makeMove)==null)
-					{
-						try 
-						{
-							int []testMove = new int []{x,y,z};
-							copy.makeMove(new Move(this, makeMove));
-							int[] testarray = new int[8] ; //something that evaluates the board on the number of 4x,3x,2x,1x and 4o,3o,2o,1o
-							double scoreTest = 	weights[0] +weights[1]*testarray[0] +weights[2]*testarray[1] +weights[3]*testarray[2] 
-												+weights[4]*testarray[3] +weights[5]*testarray[4] +weights[6]*testarray[5] 
-												+weights[7]*testarray[6] +weights[8]*testarray[7]; 
-							//summ of weights multiplied by the testarray
-							if(boardScore>scoreTest)
-								boardScore = scoreTest;
-								makeMove=testMove;
-							
-						} 
-						catch (IllegalMoveException e) 
-						{
-							// TODO Auto-generated catch block
-							//e.printStackTrace();
-						}
-					}
-					
-				}	
-			}
-		}
-		// do a move using the cloned board
-		
-
-		// return your final decision for your next move
-		return makeMove;
 	}
 	
 	/**
@@ -330,17 +267,22 @@ public class NewPlayer implements IPlayer {
 	 */
 	public void onMatchEnds(IBoard board) {
 		// calculate error
+		matches++;
 		float currentBoardState = 0;
 		if(board.getWinner() == null)
 			currentBoardState = 50;
 		else if(board.getWinner() == this)
 			currentBoardState = 100;
-		else
+		else{
 			currentBoardState = -100;
-		
+			lost++;
+		}
 		float error = Math.abs(classifyBoard(board) - currentBoardState);
 		LMS(board, error);
-		
+		//System.out.println("------------------------Required Moves: " + moves);
+		//float stat= (float) lost/ (float)matches;
+		//System.out.println(lost + " out of " +matches +" --- "+ stat);
+		moves = 0;
 		return;
 	}
 
