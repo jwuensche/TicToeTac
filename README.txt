@@ -1,1 +1,0 @@
-Please have a look at docs/index.html.
