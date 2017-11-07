@@ -10,6 +10,15 @@ class Node:
 	def addChild(self, child):
 		self.children.append(child)
 
+import math
+
+#variables for global use
+part_unacc= 0
+part_acc=0
+part_good=0
+part_vgood=0
+amount=0
+
 #standart stuff for xml files
 def initialize(name_of_file):
 	name_of_file.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
@@ -36,24 +45,51 @@ def readData(name_of_origin, name_of_destination, attributes):
 #gets index for current entry in regarding array
 def checkEntry(goal, list):
 	#print(goal)
+	global part_unacc
+	global part_acc
+	global part_good
+	global part_vgood
+	global amount
+
+	if goal == 'unacc':
+		amount += 1
+		part_unacc += 1
+
+	if goal == 'acc':
+		amount += 1
+		part_acc += 1
+
+	if goal == 'good':
+		amount += 1
+		part_good += 1
+
+	if goal == 'vgood':
+		amount += 1
+		part_vgood += 1
+
 	for idx,entry in enumerate(list):
 		if entry == goal:
 			return idx
 
 	return -1
 
-def id3(data, root):
+#def id3(data, root):
 	# Search for best Category
 	# Create new children nodes for current node
 	# Test with data
 	# return if perfect
 
-
-def entropy():
-	
+# calculates entropy for definig values
+def entropy(stuff):
+	global part_unacc
+	global part_acc
+	global part_good
+	global part_vgood
+	global amount
+	return (part_unacc / amount) * math.log((part_unacc / amount),4) + (part_acc / amount) * math.log((part_acc / amount),4) + (part_good / amount) * math.log((part_good / amount),4) + (part_vgood / amount) * math.log((part_vgood / amount),4)
 
 def informationGain():
-
+	
 
 #grading values
 values = ['unacc', 'acc', 'good', 'vgood'] #0
@@ -68,8 +104,14 @@ result = open('decision_tree.txt','w+')
 initialize(result)
 original_data = open('cardata/car.data','r')
 data = readData(original_data, data, attributes)
+entropy = entropy('stuff') 
 
+print(part_unacc)
+print(part_acc)
+print(part_good)
+print(part_vgood)
+print(amount)
 
-print(data)
+print(entropy)
 original_data.close()
 result.close()
