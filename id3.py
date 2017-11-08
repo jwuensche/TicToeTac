@@ -1,3 +1,5 @@
+import math
+
 class Node:
 
 	def __init__(self, type):
@@ -9,15 +11,6 @@ class Node:
 
 	def addChild(self, child):
 		self.children.append(child)
-
-import math
-
-#variables for global use
-part_unacc= 0
-part_acc=0
-part_good=0
-part_vgood=0
-amount=0
 
 #standart stuff for xml files
 def initialize(name_of_file):
@@ -58,24 +51,39 @@ def checkEntry(goal, list):
 	# return if perfect
 
 # calculates entropy for definig values
+# 0 - unacc, 1 - acc, 2 - good, 3 - vgood. 4 - amount
+#still needs fetch for 0 data_nums elsewise it will sooner or later crash
 def entropy(data_nums):
-# 0 - unacc, 1 - acc, 2 - good, 3 - vgood
-	global amount
-	return (data_nums[0] / amount) * math.log((data_nums[0] / amount),4) - (data_nums[1] / amount) * math.log((data_nums[1] / amount),4) - (data_nums[2] / amount) * math.log((data_nums[2] / amount),4) - (data_nums[3] / amount) * math.log((data_nums[3] / amount),4)
+	entropy = 0
+	for num in data_nums:
+		if num != 0:
+			entropy += -(num / data_nums[4]) * math.log((num / data_nums[4]),4)
+			
+	return entropy
 
-#def informationGain():
+#calculates informationGain value for given set of data for a specific attribute(distinguished by position in attribute array)
+def informationGain(data, attribute):
+	stats_data = collectInformation(data)
+	sub_sets = [[],[],[],[]]
+	entropy_sum_single_sets = 0
 
-#what do i actually need? count of things with this argument at attribute, size of list at child, size of list at parent 
+	qsave = collectInformation(data)
+	qlist = [qsave[6][0],qsave[6][1],qsave[6][2],qsave[6][3],qsave[7]]
+	data_entropy = entropy(qlist)
+	
+	for list in data:
+		sub_sets[list[attribute]].append(list)
+
+	for set in sub_sets:
+		qsave = collectInformation(set)
+		qlist = [qsave[6][0],qsave[6][1],qsave[6][2],qsave[6][3],qsave[7]]
+		entropy_sum_single_sets += entropy(qlist)
+
+	return data_entropy - entropy_sum_single_sets
+
+#counts appearence of every attribute in a given set of data
 def collectInformation(data):
-	global amount
-	information=[]
-	information.append([0,0,0,0])
-	information.append([0,0,0,0])
-	information.append([0,0,0,0])
-	information.append([0,0,0,0])
-	information.append([0,0,0,0])
-	information.append([0,0,0,0])
-	information.append([0,0,0,0])
+	information=[[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], 0]
 	for list in data:
 		information[0][list[0]]+= 1
 		information[1][list[1]]+= 1
@@ -84,13 +92,13 @@ def collectInformation(data):
 		information[4][list[4]]+= 1
 		information[5][list[5]]+= 1
 		information[6][list[6]]+= 1
-		amount += 1
+		information[7] += 1
 
 	return information
 
-#grading values
+#class values
 values = ['unacc', 'acc', 'good', 'vgood']
-#decision attributes including grading values
+#decision attributes including class values,0 - buying, 1 - maint, 2 - doors, 3- persons, 4- lug_boot, 5- safety, 7- class value
 attributes = [['vhigh', 'high', 'med', 'low'], ['vhigh', 'high', 'med', 'low'], ['2', '3', '4', '5more'], ['2', '4', 'more'], ['small', 'med', 'big'], ['low', 'med', 'high'], ['unacc', 'acc', 'good', 'vgood']]
 #Root creation
 root = Node('node')	
@@ -104,7 +112,7 @@ data = readData(original_data, data, attributes)
 #get data
 qsave = (collectInformation(data))
 
-test = [qsave[6][0],qsave[6][1],qsave[6][2],qsave[6][3]]
+test = [qsave[6][0],qsave[6][1],qsave[6][2],qsave[6][3],qsave[7]]
 
 entropy = entropy(test)
 
