@@ -2,9 +2,10 @@ import math
 
 class Node:
 
-	def __init__(self, type):
+	def __init__(self, type, data):
 		self.type = type
 		self.children = []
+		self.content = data
 
 	def updateType(self, type):
 		self.type = type
@@ -12,11 +13,23 @@ class Node:
 	def addChild(self, child):
 		self.children.append(child)
 
+	def toString(self):
+		result = 'Type: ' + self.type + ', Data: '
+		for list in self.content:
+			result.join(str(e) for e in list)
+			result+= ' '
+
+		for child in self.children:
+			result += child.toString()
+
+		return result
+
 #standart stuff for xml files
 def initialize(name_of_file):
 	name_of_file.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
 
 #Transfers data from plain text file in to matrix for algorithm
+#maybe use split -> Paul proposed this
 def readData(name_of_origin, name_of_destination, attributes):
 	linenumber = 0
 	for line in name_of_origin:
@@ -44,21 +57,40 @@ def checkEntry(goal, list):
 
 	return -1
 
-#def id3(data, root):
+def id3(root, attributes):
 	# Search for best Category
 	# Create new children nodes for current node
 	# Test with data
 	# return if perfect
 
+	qsave = (collectInformation(root.content))
+	test = [qsave[6][0],qsave[6][1],qsave[6][2],qsave[6][3],qsave[7]]
+
+	if entropy(test) == 0:
+		return
+
+	highestGain = [0,0]
+	for id,list in enumerate(attributes):
+		if highestGain[0] < informationGain(root.content, id):
+			highestGain[0] = informationGain(root.content,id)
+			highestGain[1] = id
+	print(highestGain)
+	for id,stuff in enumerate(attributes[highestGain[1]]):
+		child = Node('Node', [])
+		for list in root.content:
+			if list[highestGain[1]] == id:
+				child.addChild(child)
+		id3(child, attributes)
+
+
 # calculates entropy for definig values
 # 0 - unacc, 1 - acc, 2 - good, 3 - vgood. 4 - amount
-#still needs fetch for 0 data_nums elsewise it will sooner or later crash
 def entropy(data_nums):
 	entropy = 0
 	for num in data_nums:
 		if num != 0:
 			entropy += -(num / data_nums[4]) * math.log((num / data_nums[4]),4)
-			
+
 	return entropy
 
 #calculates informationGain value for given set of data for a specific attribute(distinguished by position in attribute array)
@@ -96,28 +128,24 @@ def collectInformation(data):
 
 	return information
 
+#def printTree(root):
+
 #class values
 values = ['unacc', 'acc', 'good', 'vgood']
 #decision attributes including class values,0 - buying, 1 - maint, 2 - doors, 3- persons, 4- lug_boot, 5- safety, 7- class value
 attributes = [['vhigh', 'high', 'med', 'low'], ['vhigh', 'high', 'med', 'low'], ['2', '3', '4', '5more'], ['2', '4', 'more'], ['small', 'med', 'big'], ['low', 'med', 'high'], ['unacc', 'acc', 'good', 'vgood']]
-#Root creation
-root = Node('node')	
 #Matrix for faster calculation of information gain
 data = []
 #Main working part
 result = open('decision_tree.txt','w+')
 initialize(result)
 original_data = open('cardata/car.data','r')
-data = readData(original_data, data, attributes)
 #get data
-qsave = (collectInformation(data))
-
-test = [qsave[6][0],qsave[6][1],qsave[6][2],qsave[6][3],qsave[7]]
-
-entropy = entropy(test)
-
-print(entropy)
-
+data = readData(original_data, data, attributes)
+#Root creation
+root = Node('node', data)
+id3(root, attributes)
+result.write(root.toString())
 #print(entropy)
 original_data.close()
 result.close()
