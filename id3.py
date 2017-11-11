@@ -6,6 +6,8 @@ class Node:
 		self.type = type
 		self.children = []
 		self.content = data
+		self.entropy = 0
+		self.attribute = 'leaf'
 
 	def updateType(self, type):
 		self.type = type
@@ -14,11 +16,12 @@ class Node:
 		self.children.append(child)
 
 	def toString(self):
-		result = 'Type: ' + self.type + ', Data: '
-		for list in self.content:
-			result.join(str(e) for e in list)
-			result+= ' '
-
+		result = 'Type: ' + self.type + ' Entropy: ' + str(self.entropy) + ' Attribute: ' + str(self.attribute) + ' Data: '
+		qsave = collectInformation(self.content)
+		qlist = [qsave[6][0],qsave[6][1],qsave[6][2],qsave[6][3],qsave[7]]
+		result+= ','.join(str(e) for e in qlist)
+		result+= ' '
+		result += '\n'
 		for child in self.children:
 			result += child.toString()
 
@@ -50,13 +53,14 @@ def readData(name_of_origin, name_of_destination, attributes):
 
 #gets index for current entry in regarding array
 def checkEntry(goal, list):
-	#print(goal)
 	for idx,entry in enumerate(list):
 		if entry == goal:
 			return idx
 
 	return -1
 
+
+#currently overshoots by one so it just sorts by class attribute
 def id3(root, attributes):
 	# Search for best Category
 	# Create new children nodes for current node
@@ -65,32 +69,40 @@ def id3(root, attributes):
 
 	qsave = (collectInformation(root.content))
 	test = [qsave[6][0],qsave[6][1],qsave[6][2],qsave[6][3],qsave[7]]
+	root.entropy = entropy(test)
 
 	if entropy(test) == 0:
+		for id,num in enumerate(test):
+			if num != 0 and id != 4:
+				root.type = values[id]
 		return
 
 	highestGain = [0,0]
 	for id,list in enumerate(attributes):
-		if highestGain[0] < informationGain(root.content, id):
+		if highestGain[0] < informationGain(root.content, id) and id != 6:
 			highestGain[0] = informationGain(root.content,id)
 			highestGain[1] = id
-	print(highestGain)
+
+	root.attribute = attributes[highestGain[1]]
+
 	for id,stuff in enumerate(attributes[highestGain[1]]):
 		child = Node('Node', [])
 		for list in root.content:
 			if list[highestGain[1]] == id:
-				child.addChild(child)
+				child.content.append(list)
+		root.addChild(child)
 		id3(child, attributes)
+
+
 
 
 # calculates entropy for definig values
 # 0 - unacc, 1 - acc, 2 - good, 3 - vgood. 4 - amount
 def entropy(data_nums):
 	entropy = 0
-	for num in data_nums:
-		if num != 0:
-			entropy += -(num / data_nums[4]) * math.log((num / data_nums[4]),4)
-
+	for id,num in enumerate(data_nums):
+		if id != 4 and num != 0:
+			entropy += - (num/data_nums[4]) * math.log(num/data_nums[4], 4)
 	return entropy
 
 #calculates informationGain value for given set of data for a specific attribute(distinguished by position in attribute array)
@@ -108,8 +120,8 @@ def informationGain(data, attribute):
 
 	for set in sub_sets:
 		qsave = collectInformation(set)
-		qlist = [qsave[6][0],qsave[6][1],qsave[6][2],qsave[6][3],qsave[7]]
-		entropy_sum_single_sets += entropy(qlist)
+		qlist2 = [qsave[6][0],qsave[6][1],qsave[6][2],qsave[6][3],qsave[7]]
+		entropy_sum_single_sets += qlist2[4]/qlist[4] * entropy(qlist2)
 
 	return data_entropy - entropy_sum_single_sets
 
