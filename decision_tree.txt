@@ -1,1 +1,521 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tree classes="class1:1210,class2:384,class3:69,class4:65" entropy="0.603"> 
+	<node classes="class1:576" entropy="0.0" safety="low">class1</node>
+	<node classes="class1:357,class2:180,class3:39" entropy="0.608" safety="med">
+		<node classes="class1:192" entropy="0.0" persons="2">class1</node>
+		<node classes="class1:84,class2:90,class3:18" entropy="0.677" persons="4">
+			<node classes="class1:36,class2:12" entropy="0.406" buying="vhigh">
+				<node classes="class1:12" entropy="0.0" maint="vhigh">class1</node>
+				<node classes="class1:12" entropy="0.0" maint="high">class1</node>
+				<node classes="class1:6,class2:6" entropy="0.5" maint="med">
+					<node classes="class1:4" entropy="0.0" lug_boot="small">class1</node>
+					<node classes="class1:2,class2:2" entropy="0.5" lug_boot="med">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class1:1" entropy="0.0" doors="3">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:4" entropy="0.0" lug_boot="big">class2</node>
+				</node>
+				<node classes="class1:6,class2:6" entropy="0.5" maint="low">
+					<node classes="class1:4" entropy="0.0" lug_boot="small">class1</node>
+					<node classes="class1:2,class2:2" entropy="0.5" lug_boot="med">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class1:1" entropy="0.0" doors="3">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:4" entropy="0.0" lug_boot="big">class2</node>
+				</node>
+			</node>
+			<node classes="class1:30,class2:18" entropy="0.477" buying="high">
+				<node classes="class1:16" entropy="0.0" lug_boot="small">class1</node>
+				<node classes="class1:10,class2:6" entropy="0.477" lug_boot="med">
+					<node classes="class1:4" entropy="0.0" doors="2">class1</node>
+					<node classes="class1:4" entropy="0.0" doors="3">class1</node>
+					<node classes="class1:1,class2:3" entropy="0.406" doors="4">
+						<node classes="class1:1" entropy="0.0" maint="vhigh">class1</node>
+						<node classes="class2:1" entropy="0.0" maint="high">class2</node>
+						<node classes="class2:1" entropy="0.0" maint="med">class2</node>
+						<node classes="class2:1" entropy="0.0" maint="low">class2</node>
+					</node>
+					<node classes="class1:1,class2:3" entropy="0.406" doors="5more">
+						<node classes="class1:1" entropy="0.0" maint="vhigh">class1</node>
+						<node classes="class2:1" entropy="0.0" maint="high">class2</node>
+						<node classes="class2:1" entropy="0.0" maint="med">class2</node>
+						<node classes="class2:1" entropy="0.0" maint="low">class2</node>
+					</node>
+				</node>
+				<node classes="class1:4,class2:12" entropy="0.406" lug_boot="big">
+					<node classes="class1:4" entropy="0.0" maint="vhigh">class1</node>
+					<node classes="class2:4" entropy="0.0" maint="high">class2</node>
+					<node classes="class2:4" entropy="0.0" maint="med">class2</node>
+					<node classes="class2:4" entropy="0.0" maint="low">class2</node>
+				</node>
+			</node>
+			<node classes="class1:12,class2:30,class3:6" entropy="0.649" buying="med">
+				<node classes="class1:6,class2:6" entropy="0.5" maint="vhigh">
+					<node classes="class1:4" entropy="0.0" lug_boot="small">class1</node>
+					<node classes="class1:2,class2:2" entropy="0.5" lug_boot="med">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class1:1" entropy="0.0" doors="3">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:4" entropy="0.0" lug_boot="big">class2</node>
+				</node>
+				<node classes="class1:6,class2:6" entropy="0.5" maint="high">
+					<node classes="class1:4" entropy="0.0" lug_boot="small">class1</node>
+					<node classes="class1:2,class2:2" entropy="0.5" lug_boot="med">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class1:1" entropy="0.0" doors="3">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:4" entropy="0.0" lug_boot="big">class2</node>
+				</node>
+				<node classes="class2:12" entropy="0.0" maint="med">class2</node>
+				<node classes="class2:6,class3:6" entropy="0.5" maint="low">
+					<node classes="class2:4" entropy="0.0" lug_boot="small">class2</node>
+					<node classes="class2:2,class3:2" entropy="0.5" lug_boot="med">
+						<node classes="class2:1" entropy="0.0" doors="2">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class3:1" entropy="0.0" doors="4">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="5more">class3</node>
+					</node>
+					<node classes="class3:4" entropy="0.0" lug_boot="big">class3</node>
+				</node>
+			</node>
+			<node classes="class1:6,class2:30,class3:12" entropy="0.649" buying="low">
+				<node classes="class1:6,class2:6" entropy="0.5" maint="vhigh">
+					<node classes="class1:4" entropy="0.0" lug_boot="small">class1</node>
+					<node classes="class1:2,class2:2" entropy="0.5" lug_boot="med">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class1:1" entropy="0.0" doors="3">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:4" entropy="0.0" lug_boot="big">class2</node>
+				</node>
+				<node classes="class2:12" entropy="0.0" maint="high">class2</node>
+				<node classes="class2:6,class3:6" entropy="0.5" maint="med">
+					<node classes="class2:4" entropy="0.0" lug_boot="small">class2</node>
+					<node classes="class2:2,class3:2" entropy="0.5" lug_boot="med">
+						<node classes="class2:1" entropy="0.0" doors="2">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class3:1" entropy="0.0" doors="4">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="5more">class3</node>
+					</node>
+					<node classes="class3:4" entropy="0.0" lug_boot="big">class3</node>
+				</node>
+				<node classes="class2:6,class3:6" entropy="0.5" maint="low">
+					<node classes="class2:4" entropy="0.0" lug_boot="small">class2</node>
+					<node classes="class2:2,class3:2" entropy="0.5" lug_boot="med">
+						<node classes="class2:1" entropy="0.0" doors="2">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class3:1" entropy="0.0" doors="4">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="5more">class3</node>
+					</node>
+					<node classes="class3:4" entropy="0.0" lug_boot="big">class3</node>
+				</node>
+			</node>
+		</node>
+		<node classes="class1:81,class2:90,class3:21" entropy="0.693" persons="more">
+			<node classes="class1:34,class2:14" entropy="0.435" buying="vhigh">
+				<node classes="class1:12" entropy="0.0" maint="vhigh">class1</node>
+				<node classes="class1:12" entropy="0.0" maint="high">class1</node>
+				<node classes="class1:5,class2:7" entropy="0.49" maint="med">
+					<node classes="class1:4" entropy="0.0" lug_boot="small">class1</node>
+					<node classes="class1:1,class2:3" entropy="0.406" lug_boot="med">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:4" entropy="0.0" lug_boot="big">class2</node>
+				</node>
+				<node classes="class1:5,class2:7" entropy="0.49" maint="low">
+					<node classes="class1:4" entropy="0.0" lug_boot="small">class1</node>
+					<node classes="class1:1,class2:3" entropy="0.406" lug_boot="med">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:4" entropy="0.0" lug_boot="big">class2</node>
+				</node>
+			</node>
+			<node classes="class1:27,class2:21" entropy="0.494" buying="high">
+				<node classes="class1:16" entropy="0.0" lug_boot="small">class1</node>
+				<node classes="class1:7,class2:9" entropy="0.494" lug_boot="med">
+					<node classes="class1:4" entropy="0.0" maint="vhigh">class1</node>
+					<node classes="class1:1,class2:3" entropy="0.406" maint="high">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class1:1,class2:3" entropy="0.406" maint="med">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class1:1,class2:3" entropy="0.406" maint="low">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+				</node>
+				<node classes="class1:4,class2:12" entropy="0.406" lug_boot="big">
+					<node classes="class1:4" entropy="0.0" maint="vhigh">class1</node>
+					<node classes="class2:4" entropy="0.0" maint="high">class2</node>
+					<node classes="class2:4" entropy="0.0" maint="med">class2</node>
+					<node classes="class2:4" entropy="0.0" maint="low">class2</node>
+				</node>
+			</node>
+			<node classes="class1:12,class2:29,class3:7" entropy="0.672" buying="med">
+				<node classes="class1:5,class2:7" entropy="0.49" maint="vhigh">
+					<node classes="class1:4" entropy="0.0" lug_boot="small">class1</node>
+					<node classes="class1:1,class2:3" entropy="0.406" lug_boot="med">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:4" entropy="0.0" lug_boot="big">class2</node>
+				</node>
+				<node classes="class1:5,class2:7" entropy="0.49" maint="high">
+					<node classes="class1:4" entropy="0.0" lug_boot="small">class1</node>
+					<node classes="class1:1,class2:3" entropy="0.406" lug_boot="med">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:4" entropy="0.0" lug_boot="big">class2</node>
+				</node>
+				<node classes="class1:1,class2:11" entropy="0.207" maint="med">
+					<node classes="class1:1,class2:2" entropy="0.459" doors="2">
+						<node classes="class1:1" entropy="0.0" lug_boot="small">class1</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="med">class2</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="big">class2</node>
+					</node>
+					<node classes="class2:3" entropy="0.0" doors="3">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="4">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="5more">class2</node>
+				</node>
+				<node classes="class1:1,class2:4,class3:7" entropy="0.64" maint="low">
+					<node classes="class1:1,class2:3" entropy="0.406" lug_boot="small">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:1,class3:3" entropy="0.406" lug_boot="med">
+						<node classes="class2:1" entropy="0.0" doors="2">class2</node>
+						<node classes="class3:1" entropy="0.0" doors="3">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="4">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="5more">class3</node>
+					</node>
+					<node classes="class3:4" entropy="0.0" lug_boot="big">class3</node>
+				</node>
+			</node>
+			<node classes="class1:8,class2:26,class3:14" entropy="0.714" buying="low">
+				<node classes="class1:5,class2:7" entropy="0.49" maint="vhigh">
+					<node classes="class1:4" entropy="0.0" lug_boot="small">class1</node>
+					<node classes="class1:1,class2:3" entropy="0.406" lug_boot="med">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:4" entropy="0.0" lug_boot="big">class2</node>
+				</node>
+				<node classes="class1:1,class2:11" entropy="0.207" maint="high">
+					<node classes="class1:1,class2:2" entropy="0.459" doors="2">
+						<node classes="class1:1" entropy="0.0" lug_boot="small">class1</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="med">class2</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="big">class2</node>
+					</node>
+					<node classes="class2:3" entropy="0.0" doors="3">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="4">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="5more">class2</node>
+				</node>
+				<node classes="class1:1,class2:4,class3:7" entropy="0.64" maint="med">
+					<node classes="class1:1,class2:3" entropy="0.406" lug_boot="small">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:1,class3:3" entropy="0.406" lug_boot="med">
+						<node classes="class2:1" entropy="0.0" doors="2">class2</node>
+						<node classes="class3:1" entropy="0.0" doors="3">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="4">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="5more">class3</node>
+					</node>
+					<node classes="class3:4" entropy="0.0" lug_boot="big">class3</node>
+				</node>
+				<node classes="class1:1,class2:4,class3:7" entropy="0.64" maint="low">
+					<node classes="class1:1,class2:3" entropy="0.406" lug_boot="small">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:1,class3:3" entropy="0.406" lug_boot="med">
+						<node classes="class2:1" entropy="0.0" doors="2">class2</node>
+						<node classes="class3:1" entropy="0.0" doors="3">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="4">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="5more">class3</node>
+					</node>
+					<node classes="class3:4" entropy="0.0" lug_boot="big">class3</node>
+				</node>
+			</node>
+		</node>
+	</node>
+	<node classes="class1:277,class2:204,class3:30,class4:65" entropy="0.808" safety="high">
+		<node classes="class1:192" entropy="0.0" persons="2">class1</node>
+		<node classes="class1:36,class2:108,class3:18,class4:30" entropy="0.829" persons="4">
+			<node classes="class1:24,class2:24" entropy="0.5" buying="vhigh">
+				<node classes="class1:12" entropy="0.0" maint="vhigh">class1</node>
+				<node classes="class1:12" entropy="0.0" maint="high">class1</node>
+				<node classes="class2:12" entropy="0.0" maint="med">class2</node>
+				<node classes="class2:12" entropy="0.0" maint="low">class2</node>
+			</node>
+			<node classes="class1:12,class2:36" entropy="0.406" buying="high">
+				<node classes="class1:12" entropy="0.0" maint="vhigh">class1</node>
+				<node classes="class2:12" entropy="0.0" maint="high">class2</node>
+				<node classes="class2:12" entropy="0.0" maint="med">class2</node>
+				<node classes="class2:12" entropy="0.0" maint="low">class2</node>
+			</node>
+			<node classes="class2:30,class3:6,class4:12" entropy="0.649" buying="med">
+				<node classes="class2:12" entropy="0.0" maint="vhigh">class2</node>
+				<node classes="class2:12" entropy="0.0" maint="high">class2</node>
+				<node classes="class2:6,class4:6" entropy="0.5" maint="med">
+					<node classes="class2:4" entropy="0.0" lug_boot="small">class2</node>
+					<node classes="class2:2,class4:2" entropy="0.5" lug_boot="med">
+						<node classes="class2:1" entropy="0.0" doors="2">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class4:1" entropy="0.0" doors="4">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="5more">class4</node>
+					</node>
+					<node classes="class4:4" entropy="0.0" lug_boot="big">class4</node>
+				</node>
+				<node classes="class3:6,class4:6" entropy="0.5" maint="low">
+					<node classes="class3:4" entropy="0.0" lug_boot="small">class3</node>
+					<node classes="class3:2,class4:2" entropy="0.5" lug_boot="med">
+						<node classes="class3:1" entropy="0.0" doors="2">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="3">class3</node>
+						<node classes="class4:1" entropy="0.0" doors="4">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="5more">class4</node>
+					</node>
+					<node classes="class4:4" entropy="0.0" lug_boot="big">class4</node>
+				</node>
+			</node>
+			<node classes="class2:18,class3:12,class4:18" entropy="0.781" buying="low">
+				<node classes="class2:12" entropy="0.0" maint="vhigh">class2</node>
+				<node classes="class2:6,class4:6" entropy="0.5" maint="high">
+					<node classes="class2:4" entropy="0.0" lug_boot="small">class2</node>
+					<node classes="class2:2,class4:2" entropy="0.5" lug_boot="med">
+						<node classes="class2:1" entropy="0.0" doors="2">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class4:1" entropy="0.0" doors="4">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="5more">class4</node>
+					</node>
+					<node classes="class4:4" entropy="0.0" lug_boot="big">class4</node>
+				</node>
+				<node classes="class3:6,class4:6" entropy="0.5" maint="med">
+					<node classes="class3:4" entropy="0.0" lug_boot="small">class3</node>
+					<node classes="class3:2,class4:2" entropy="0.5" lug_boot="med">
+						<node classes="class3:1" entropy="0.0" doors="2">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="3">class3</node>
+						<node classes="class4:1" entropy="0.0" doors="4">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="5more">class4</node>
+					</node>
+					<node classes="class4:4" entropy="0.0" lug_boot="big">class4</node>
+				</node>
+				<node classes="class3:6,class4:6" entropy="0.5" maint="low">
+					<node classes="class3:4" entropy="0.0" lug_boot="small">class3</node>
+					<node classes="class3:2,class4:2" entropy="0.5" lug_boot="med">
+						<node classes="class3:1" entropy="0.0" doors="2">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="3">class3</node>
+						<node classes="class4:1" entropy="0.0" doors="4">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="5more">class4</node>
+					</node>
+					<node classes="class4:4" entropy="0.0" lug_boot="big">class4</node>
+				</node>
+			</node>
+		</node>
+		<node classes="class1:49,class2:96,class3:12,class4:35" entropy="0.85" persons="more">
+			<node classes="class1:26,class2:22" entropy="0.497" buying="vhigh">
+				<node classes="class1:12" entropy="0.0" maint="vhigh">class1</node>
+				<node classes="class1:12" entropy="0.0" maint="high">class1</node>
+				<node classes="class1:1,class2:11" entropy="0.207" maint="med">
+					<node classes="class1:1,class2:2" entropy="0.459" doors="2">
+						<node classes="class1:1" entropy="0.0" lug_boot="small">class1</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="med">class2</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="big">class2</node>
+					</node>
+					<node classes="class2:3" entropy="0.0" doors="3">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="4">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="5more">class2</node>
+				</node>
+				<node classes="class1:1,class2:11" entropy="0.207" maint="low">
+					<node classes="class1:1,class2:2" entropy="0.459" doors="2">
+						<node classes="class1:1" entropy="0.0" lug_boot="small">class1</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="med">class2</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="big">class2</node>
+					</node>
+					<node classes="class2:3" entropy="0.0" doors="3">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="4">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="5more">class2</node>
+				</node>
+			</node>
+			<node classes="class1:15,class2:33" entropy="0.448" buying="high">
+				<node classes="class1:12" entropy="0.0" maint="vhigh">class1</node>
+				<node classes="class1:1,class2:11" entropy="0.207" maint="high">
+					<node classes="class1:1,class2:2" entropy="0.459" doors="2">
+						<node classes="class1:1" entropy="0.0" lug_boot="small">class1</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="med">class2</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="big">class2</node>
+					</node>
+					<node classes="class2:3" entropy="0.0" doors="3">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="4">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="5more">class2</node>
+				</node>
+				<node classes="class1:1,class2:11" entropy="0.207" maint="med">
+					<node classes="class1:1,class2:2" entropy="0.459" doors="2">
+						<node classes="class1:1" entropy="0.0" lug_boot="small">class1</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="med">class2</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="big">class2</node>
+					</node>
+					<node classes="class2:3" entropy="0.0" doors="3">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="4">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="5more">class2</node>
+				</node>
+				<node classes="class1:1,class2:11" entropy="0.207" maint="low">
+					<node classes="class1:1,class2:2" entropy="0.459" doors="2">
+						<node classes="class1:1" entropy="0.0" lug_boot="small">class1</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="med">class2</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="big">class2</node>
+					</node>
+					<node classes="class2:3" entropy="0.0" doors="3">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="4">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="5more">class2</node>
+				</node>
+			</node>
+			<node classes="class1:4,class2:26,class3:4,class4:14" entropy="0.798" buying="med">
+				<node classes="class1:1,class2:11" entropy="0.207" maint="vhigh">
+					<node classes="class1:1,class2:2" entropy="0.459" doors="2">
+						<node classes="class1:1" entropy="0.0" lug_boot="small">class1</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="med">class2</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="big">class2</node>
+					</node>
+					<node classes="class2:3" entropy="0.0" doors="3">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="4">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="5more">class2</node>
+				</node>
+				<node classes="class1:1,class2:11" entropy="0.207" maint="high">
+					<node classes="class1:1,class2:2" entropy="0.459" doors="2">
+						<node classes="class1:1" entropy="0.0" lug_boot="small">class1</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="med">class2</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="big">class2</node>
+					</node>
+					<node classes="class2:3" entropy="0.0" doors="3">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="4">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="5more">class2</node>
+				</node>
+				<node classes="class1:1,class2:4,class4:7" entropy="0.64" maint="med">
+					<node classes="class1:1,class2:3" entropy="0.406" lug_boot="small">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:1,class4:3" entropy="0.406" lug_boot="med">
+						<node classes="class2:1" entropy="0.0" doors="2">class2</node>
+						<node classes="class4:1" entropy="0.0" doors="3">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="4">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="5more">class4</node>
+					</node>
+					<node classes="class4:4" entropy="0.0" lug_boot="big">class4</node>
+				</node>
+				<node classes="class1:1,class3:4,class4:7" entropy="0.64" maint="low">
+					<node classes="class1:1,class3:3" entropy="0.406" lug_boot="small">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class3:1" entropy="0.0" doors="3">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="4">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="5more">class3</node>
+					</node>
+					<node classes="class3:1,class4:3" entropy="0.406" lug_boot="med">
+						<node classes="class3:1" entropy="0.0" doors="2">class3</node>
+						<node classes="class4:1" entropy="0.0" doors="3">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="4">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="5more">class4</node>
+					</node>
+					<node classes="class4:4" entropy="0.0" lug_boot="big">class4</node>
+				</node>
+			</node>
+			<node classes="class1:4,class2:15,class3:8,class4:21" entropy="0.888" buying="low">
+				<node classes="class1:1,class2:11" entropy="0.207" maint="vhigh">
+					<node classes="class1:1,class2:2" entropy="0.459" doors="2">
+						<node classes="class1:1" entropy="0.0" lug_boot="small">class1</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="med">class2</node>
+						<node classes="class2:1" entropy="0.0" lug_boot="big">class2</node>
+					</node>
+					<node classes="class2:3" entropy="0.0" doors="3">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="4">class2</node>
+					<node classes="class2:3" entropy="0.0" doors="5more">class2</node>
+				</node>
+				<node classes="class1:1,class2:4,class4:7" entropy="0.64" maint="high">
+					<node classes="class1:1,class2:3" entropy="0.406" lug_boot="small">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class2:1" entropy="0.0" doors="3">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="4">class2</node>
+						<node classes="class2:1" entropy="0.0" doors="5more">class2</node>
+					</node>
+					<node classes="class2:1,class4:3" entropy="0.406" lug_boot="med">
+						<node classes="class2:1" entropy="0.0" doors="2">class2</node>
+						<node classes="class4:1" entropy="0.0" doors="3">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="4">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="5more">class4</node>
+					</node>
+					<node classes="class4:4" entropy="0.0" lug_boot="big">class4</node>
+				</node>
+				<node classes="class1:1,class3:4,class4:7" entropy="0.64" maint="med">
+					<node classes="class1:1,class3:3" entropy="0.406" lug_boot="small">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class3:1" entropy="0.0" doors="3">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="4">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="5more">class3</node>
+					</node>
+					<node classes="class3:1,class4:3" entropy="0.406" lug_boot="med">
+						<node classes="class3:1" entropy="0.0" doors="2">class3</node>
+						<node classes="class4:1" entropy="0.0" doors="3">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="4">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="5more">class4</node>
+					</node>
+					<node classes="class4:4" entropy="0.0" lug_boot="big">class4</node>
+				</node>
+				<node classes="class1:1,class3:4,class4:7" entropy="0.64" maint="low">
+					<node classes="class1:1,class3:3" entropy="0.406" lug_boot="small">
+						<node classes="class1:1" entropy="0.0" doors="2">class1</node>
+						<node classes="class3:1" entropy="0.0" doors="3">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="4">class3</node>
+						<node classes="class3:1" entropy="0.0" doors="5more">class3</node>
+					</node>
+					<node classes="class3:1,class4:3" entropy="0.406" lug_boot="med">
+						<node classes="class3:1" entropy="0.0" doors="2">class3</node>
+						<node classes="class4:1" entropy="0.0" doors="3">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="4">class4</node>
+						<node classes="class4:1" entropy="0.0" doors="5more">class4</node>
+					</node>
+					<node classes="class4:4" entropy="0.0" lug_boot="big">class4</node>
+				</node>
+			</node>
+		</node>
+	</node>
+</tree>

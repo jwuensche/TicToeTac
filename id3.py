@@ -1,5 +1,7 @@
 import math
 
+attribute_name = ['buying','maint','doors','persons','lug_boot','safety','classvalue']
+
 class Node:
 
 	def __init__(self, type, data):
@@ -8,6 +10,7 @@ class Node:
 		self.content = data
 		self.entropy = 0
 		self.attribute = 'leaf'
+		self.value = ''
 
 	def updateType(self, type):
 		self.type = type
@@ -66,6 +69,7 @@ def id3(root, attributes):
 	# Create new children nodes for current node
 	# Test with data
 	# return if perfect
+	global attribute_name
 
 	qsave = (collectInformation(root.content))
 	test = [qsave[6][0],qsave[6][1],qsave[6][2],qsave[6][3],qsave[7]]
@@ -83,10 +87,11 @@ def id3(root, attributes):
 			highestGain[0] = informationGain(root.content,id)
 			highestGain[1] = id
 
-	root.attribute = attributes[highestGain[1]]
+	root.attribute = attribute_name[highestGain[1]]
 
 	for id,stuff in enumerate(attributes[highestGain[1]]):
 		child = Node('Node', [])
+		child.value = attributes[highestGain[1]][id]
 		for list in root.content:
 			if list[highestGain[1]] == id:
 				child.content.append(list)
@@ -140,7 +145,58 @@ def collectInformation(data):
 
 	return information
 
-#def printTree(root):
+#<tree classes="class1:123,class2:234,class3:345" entropy="0.123">
+#<node classes="class1:23,class2:123" entropy="0.234" attr1="value1">
+def printTreeInitial(root, name_of_destination):
+	initialize(name_of_destination)
+	information = collectInformation(root.content)
+	name_of_destination.write('<tree classes="')
+	first = []
+	for id,amount in enumerate(information[6]):
+		if amount !=0:
+			if first:
+				name_of_destination.write(',')
+			first = 1
+
+			name_of_destination.write('class'+ str(id+1) + ':' + str(amount)) 
+
+	name_of_destination.write('" entropy="' + str(round(root.entropy,3)) + '"> \n')
+
+	for child in root.children:
+		printTree(child,name_of_destination,root.attribute,1)
+
+	name_of_destination.write('</tree>\n')
+
+def printTree(root,name_of_destination,attribute,level):
+	for x in range(0, level):
+		name_of_destination.write('\t')
+
+	name_of_destination.write('<node classes="')
+	information = collectInformation(root.content)
+	first = []
+	for id,amount in enumerate(information[6]):
+		if amount !=0:
+			if first:
+				name_of_destination.write(',')
+			first = 1
+			name_of_destination.write('class'+ str(id+1) + ':' + str(amount))
+
+	name_of_destination.write('" entropy="' + str(round(root.entropy,3)) + '" ' + attribute + '="' + root.value + '"' +'>')
+
+	if not root.children:
+		for id,amount in enumerate(information[6]):
+			if amount !=0:
+				name_of_destination.write('class'+ str(id+1))
+
+	else:
+		name_of_destination.write('\n')
+		for child in root.children:
+			printTree(child,name_of_destination,root.attribute,level+1)
+		for x in range(0, level):
+			name_of_destination.write('\t')
+
+	name_of_destination.write('</node>\n')
+
 
 #class values
 values = ['unacc', 'acc', 'good', 'vgood']
@@ -150,14 +206,14 @@ attributes = [['vhigh', 'high', 'med', 'low'], ['vhigh', 'high', 'med', 'low'], 
 data = []
 #Main working part
 result = open('decision_tree.txt','w+')
-initialize(result)
 original_data = open('cardata/car.data','r')
 #get data
 data = readData(original_data, data, attributes)
 #Root creation
 root = Node('node', data)
 id3(root, attributes)
-result.write(root.toString())
+
+printTreeInitial(root,result)
 #print(entropy)
 original_data.close()
 result.close()
