@@ -1,5 +1,6 @@
 import math
 
+#for later output usage
 attribute_name = ['buying','maint','doors','persons','lug_boot','safety','classvalue']
 
 class Node:
@@ -18,6 +19,7 @@ class Node:
 	def addChild(self, child):
 		self.children.append(child)
 
+	#no usage nowadays but remains for debug purposes
 	def toString(self):
 		result = 'Type: ' + self.type + ' Entropy: ' + str(self.entropy) + ' Attribute: ' + str(self.attribute) + ' Data: '
 		qsave = collectInformation(self.content)
@@ -35,22 +37,15 @@ def initialize(name_of_file):
 	name_of_file.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
 
 #Transfers data from plain text file in to matrix for algorithm
-#maybe use split -> Paul proposed this
 def readData(name_of_origin, name_of_destination, attributes):
 	linenumber = 0
-	for line in name_of_origin:
-		data.append([0,0,0,0,0,0,0])
-		#print(line)
-		xpos = 0
-		last = 0
-		curAtr = 0
-		for char in line:
-			if char == ',' or char == '\n':
-				name_of_destination[linenumber][curAtr] = checkEntry(line[last : xpos], attributes[curAtr])
-				last = xpos + 1
-				curAtr+=1
-			xpos += 1
-		linenumber += 1
+	for lineid,line in enumerate(name_of_origin):
+		name_of_destination.append([0,0,0,0,0,0,0])
+		line = line.strip('\n')
+		date = line.split(',')
+
+		for id,value in enumerate(date):
+			name_of_destination[lineid][id] = checkEntry(value,attributes[id])
 
 	return name_of_destination
 
@@ -62,8 +57,7 @@ def checkEntry(goal, list):
 
 	return -1
 
-
-#currently overshoots by one so it just sorts by class attribute
+#implementation for id3 algorithm
 def id3(root, attributes):
 	# Search for best Category
 	# Create new children nodes for current node
@@ -98,9 +92,6 @@ def id3(root, attributes):
 		root.addChild(child)
 		id3(child, attributes)
 
-
-
-
 # calculates entropy for definig values
 # 0 - unacc, 1 - acc, 2 - good, 3 - vgood. 4 - amount
 def entropy(data_nums):
@@ -134,13 +125,8 @@ def informationGain(data, attribute):
 def collectInformation(data):
 	information=[[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], 0]
 	for list in data:
-		information[0][list[0]]+= 1
-		information[1][list[1]]+= 1
-		information[2][list[2]]+= 1
-		information[3][list[3]]+= 1
-		information[4][list[4]]+= 1
-		information[5][list[5]]+= 1
-		information[6][list[6]]+= 1
+		for x in range(0,7):
+			information[x][list[x]]+= 1
 		information[7] += 1
 
 	return information
@@ -148,6 +134,7 @@ def collectInformation(data):
 #<tree classes="class1:123,class2:234,class3:345" entropy="0.123">
 #<node classes="class1:23,class2:123" entropy="0.234" attr1="value1">
 def printTreeInitial(root, name_of_destination):
+	global attributes
 	initialize(name_of_destination)
 	information = collectInformation(root.content)
 	name_of_destination.write('<tree classes="')
@@ -158,7 +145,7 @@ def printTreeInitial(root, name_of_destination):
 				name_of_destination.write(',')
 			first = 1
 
-			name_of_destination.write('class'+ str(id+1) + ':' + str(amount)) 
+			name_of_destination.write(attributes[6][id] + ':' + str(amount)) 
 
 	name_of_destination.write('" entropy="' + str(round(root.entropy,3)) + '"> \n')
 
@@ -168,6 +155,7 @@ def printTreeInitial(root, name_of_destination):
 	name_of_destination.write('</tree>\n')
 
 def printTree(root,name_of_destination,attribute,level):
+	global attributes
 	for x in range(0, level):
 		name_of_destination.write('\t')
 
@@ -179,14 +167,14 @@ def printTree(root,name_of_destination,attribute,level):
 			if first:
 				name_of_destination.write(',')
 			first = 1
-			name_of_destination.write('class'+ str(id+1) + ':' + str(amount))
+			name_of_destination.write(attributes[6][id]+ ':' + str(amount))
 
 	name_of_destination.write('" entropy="' + str(round(root.entropy,3)) + '" ' + attribute + '="' + root.value + '"' +'>')
 
 	if not root.children:
 		for id,amount in enumerate(information[6]):
 			if amount !=0:
-				name_of_destination.write('class'+ str(id+1))
+				name_of_destination.write(attributes[6][id])
 
 	else:
 		name_of_destination.write('\n')
@@ -205,7 +193,7 @@ attributes = [['vhigh', 'high', 'med', 'low'], ['vhigh', 'high', 'med', 'low'], 
 #Matrix for faster calculation of information gain
 data = []
 #Main working part
-result = open('decision_tree.txt','w+')
+result = open('decision_tree.xml','w+')
 original_data = open('cardata/car.data','r')
 #get data
 data = readData(original_data, data, attributes)
