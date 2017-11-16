@@ -1,0 +1,61 @@
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{geometry}
+\pagenumbering{Roman}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lfoot{Johann Wagner, Marten Wallwein-Eising,\\ Johannes Wünsche, Paul Stang}
+\cfoot{Page \thepage \hspace{1pt} of \pageref{LastPage}}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+
+\lstset{ 
+	tabsize=3,
+	language=c
+}
+
+%\newcommand{\supervec}[3]{\ensuremath{\begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}}}
+%\newcommand{\normalvec}[2]{\ensuremath{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}}
+
+\begin{document}
+
+\title{ID3 - Implementation for given test data}
+\author{Johann Wagner, 212276 \\ Johannes Wünsche, 211720 \\ Marten Wallewein-Eising, 212277 \\ Paul Stang, 204561}
+\date{\today}
+\maketitle
+
+\section*{Overview}
+This submission includes a python 3.6 script for creation of a ID3-decision-tree, as well as the needed data, an output file created by the script in case of any incompatability or other obstacles restricting the usage.
+
+\section*{Code}
+Most things in need of explanation is commented in the code, but the base ideas are listed here anyways:\\
+\begin{itemize}
+\item \textit{function id3} contains implementation of the ID3-algorithm
+\item \textit{function printTree} contains output into the decision\_tree xml file
+\item \textit{class Node} used for storing information about single node with reference to following ones
+\item \textit{function readData} parses the plain text data file
+\item \textit{informationGain} calculates the informationGain value for given attribute
+\item \textit{collectInformation} used for informationGain to calculate entropy
+\end{itemize}
+
+\section*{Result}
+The result is a large and probably overfitted decision tree build with the ID3-algorithm.\\
+While many leaves of the tree only contain a single sample from the given data this is traceable to the algorithm itself and can be undone by simply unifying leaves which have the same parent node and point to the same class value. 
+
+
+
+\end{document}

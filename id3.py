@@ -1,10 +1,11 @@
+#for log function with changeable base
 import math
 
 #for later output usage
 attribute_name = ['buying','maint','doors','persons','lug_boot','safety','classvalue']
 
 class Node:
-
+	
 	def __init__(self, type, data):
 		self.type = type
 		self.children = []
@@ -166,7 +167,6 @@ def printTree(root,name_of_destination,attribute,level):
 
 	name_of_destination.write('</'+ root.type + '>\n')
 
-
 #class values
 values = ['unacc', 'acc', 'good', 'vgood']
 #decision attributes including class values,0 - buying, 1 - maint, 2 - doors, 3- persons, 4- lug_boot, 5- safety, 7- class value
@@ -178,11 +178,10 @@ result = open('decision_tree.xml','w+')
 original_data = open('cardata/car.data','r')
 #get data
 data = readData(original_data, data, attributes)
-#Root creation
+#root creation
 root = Node('tree', data)
 id3(root, attributes)
-
+#write into created file
 printTree(root,result,'unused',0)
-#print(entropy)
 original_data.close()
 result.close()
